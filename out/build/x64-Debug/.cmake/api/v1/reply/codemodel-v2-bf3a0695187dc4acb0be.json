@@ -1,0 +1,129 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"build" : "godot-cpp",
+					"jsonFile" : "directory-godot-cpp-Debug-f3111bd4697ae0e37c98.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.17"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "godot-cpp",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "godot-cpp-template",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "godot-cpp",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "godot-cpp.editor::@4487305cb972aeb5fb22",
+					"jsonFile" : "target-godot-cpp.editor-Debug-9620788b09cd93fd1209.json",
+					"name" : "godot-cpp.editor",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "godot-cpp.generate_bindings::@4487305cb972aeb5fb22",
+					"jsonFile" : "target-godot-cpp.generate_bindings-Debug-0c418717ca9a0694afd0.json",
+					"name" : "godot-cpp.generate_bindings",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "godot-cpp.template_debug::@4487305cb972aeb5fb22",
+					"jsonFile" : "target-godot-cpp.template_debug-Debug-df331efa97977cd0efe3.json",
+					"name" : "godot-cpp.template_debug",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "godot-cpp.template_release::@4487305cb972aeb5fb22",
+					"jsonFile" : "target-godot-cpp.template_release-Debug-c235eefa516cd8132763.json",
+					"name" : "godot-cpp.template_release",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "test-godot-cpp-game::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-test-godot-cpp-game-Debug-870af0bd39888cb118e3.json",
+					"name" : "test-godot-cpp-game",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug",
+		"source" : "C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 8
+	}
+}

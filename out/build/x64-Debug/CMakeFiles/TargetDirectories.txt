@@ -1,0 +1,9 @@
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/CMakeFiles/test-godot-cpp-game.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/CMakeFiles/edit_cache.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/godot-cpp.generate_bindings.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/godot-cpp.template_debug.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/godot-cpp.template_release.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/godot-cpp.editor.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/edit_cache.dir
+C:/Users/ludmi/Documents/GitHub/test-godot-cpp-game/out/build/x64-Debug/godot-cpp/CMakeFiles/rebuild_cache.dir
