@@ -1,6 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca0toejpg6o12"]
+[gd_scene load_steps=6 format=3 uid="uid://ca0toejpg6o12"]
 
-[ext_resource type="Script" uid="uid://dgdb4osvubx2u" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Material" uid="uid://frk1ayqnyfol" path="res://assets/materials/ground.tres" id="2_h2yge"]
+[ext_resource type="PackedScene" uid="uid://cd6se032onlxc" path="res://plant.tscn" id="3_h2yge"]
+[ext_resource type="PackedScene" uid="uid://bbwti1jc2sx7u" path="res://ui.tscn" id="4_1bvp3"]
+[ext_resource type="PlantData" uid="uid://d1xmxts47xp3u" path="res://assets/data/test_plant_data.tres" id="4_lquwl"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_ig7tw")
+
+[node name="ground" type="MeshInstance3D" parent="."]
+transform = Transform3D(4.59621, 0, 0, 0, 0.1, 0, 0, 0, 7.18583, 0, -0.1, 0)
+material_override = ExtResource("2_h2yge")
+mesh = SubResource("BoxMesh_1bvp3")
+
+[node name="sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.628803, 0.743943, -0.226175, -0.588703, 0.645514, 0.486561, 0.507972, -0.172801, 0.843862, -0.437248, 3.80656, -0.786478)
+light_color = Color(0.95646, 0.67997, 1.54018e-06, 1)
+light_energy = 0.838
+light_volumetric_fog_energy = 0.0
+shadow_enabled = true
+shadow_normal_bias = 10.0
+shadow_opacity = 0.71
+shadow_blur = 1.909
+directional_shadow_mode = 1
+directional_shadow_max_distance = 33.8
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(-4.37114e-08, -0.625243, 0.78043, 0, 0.78043, 0.625243, -1, 2.73302e-08, -3.41137e-08, 1.016, 1.54598, 0.526702)
+fov = 80.6293
+near = 0.007
+
+[node name="Ui" parent="." instance=ExtResource("4_1bvp3")]
+
+[node name="Plant" parent="." instance=ExtResource("3_h2yge")]
+data = ExtResource("4_lquwl")

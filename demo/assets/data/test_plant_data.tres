@@ -1,0 +1,12 @@
+[gd_resource type="PlantData" load_steps=4 format=3 uid="uid://d1xmxts47xp3u"]
+
+[ext_resource type="ArrayMesh" uid="uid://b3dcwj1mm04y7" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_large.obj" id="1_gare0"]
+[ext_resource type="ArrayMesh" uid="uid://dsvpbbdeueeah" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_medium.obj" id="2_f2yic"]
+[ext_resource type="ArrayMesh" uid="uid://cax7ma7e01jxl" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_small.obj" id="3_mn6nm"]
+
+[resource]
+health = 10.0
+growth_time = 60.0
+small_mesh = ExtResource("3_mn6nm")
+medium_mesh = ExtResource("2_f2yic")
+large_mesh = ExtResource("1_gare0")

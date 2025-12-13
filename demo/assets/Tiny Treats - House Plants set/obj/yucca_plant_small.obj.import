@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dmxa5mb3lenf2"
+path="res://.godot/imported/yucca_plant_small.obj-0bf38cc72f9d4037b8293c982704b9b0.mesh"
+
+[deps]
+
+files=["res://.godot/imported/yucca_plant_small.obj-0bf38cc72f9d4037b8293c982704b9b0.mesh"]
+
+source_file="res://assets/Tiny Treats - House Plants set/obj/yucca_plant_small.obj"
+dest_files=["res://.godot/imported/yucca_plant_small.obj-0bf38cc72f9d4037b8293c982704b9b0.mesh", "res://.godot/imported/yucca_plant_small.obj-0bf38cc72f9d4037b8293c982704b9b0.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false

@@ -5,8 +5,9 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "example_class.h"
 #include "summator.h"
+#include "plant.h"
+#include "plant_data.h"
 
 using namespace godot;
 
@@ -15,8 +16,9 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	GDREGISTER_CLASS(ExampleClass);
 	GDREGISTER_CLASS(Summator);
+	GDREGISTER_RUNTIME_CLASS(Plant);
+	GDREGISTER_CLASS(PlantData);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

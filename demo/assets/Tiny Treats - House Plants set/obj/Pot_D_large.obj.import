@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://bqo8okc5t7kok"
+path="res://.godot/imported/Pot_D_large.obj-159aaab04343d31d3da5a5073151528f.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Pot_D_large.obj-159aaab04343d31d3da5a5073151528f.mesh"]
+
+source_file="res://assets/Tiny Treats - House Plants set/obj/Pot_D_large.obj"
+dest_files=["res://.godot/imported/Pot_D_large.obj-159aaab04343d31d3da5a5073151528f.mesh", "res://.godot/imported/Pot_D_large.obj-159aaab04343d31d3da5a5073151528f.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
