@@ -1,10 +1,11 @@
 [gd_scene load_steps=2 format=3 uid="uid://bbwti1jc2sx7u"]
 
-[ext_resource type="StyleBox" uid="uid://bqmutfupti4g0" path="res://assets/styles/button_idle.tres" id="1_fyqef"]
+[ext_resource type="PackedScene" uid="uid://bso3gfke0vuet" path="res://need_button.tscn" id="1_fyqef"]
 
-[node name="Ui" type="Control"]
+[node name="ui" type="UIController"]
+button_container = NodePath("button-container/background/button-container")
+need_button_scene = ExtResource("1_fyqef")
 custom_minimum_size = Vector2(500, 600)
-layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -48,27 +49,3 @@ offset_right = 100.0
 offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Button1" type="Button" parent="button-container/background/button-container"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = ExtResource("1_fyqef")
-text = "one"
-
-[node name="Button2" type="Button" parent="button-container/background/button-container"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = ExtResource("1_fyqef")
-text = "two"
-
-[node name="Button3" type="Button" parent="button-container/background/button-container"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/normal = ExtResource("1_fyqef")
-text = "three"

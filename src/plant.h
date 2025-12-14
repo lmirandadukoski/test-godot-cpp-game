@@ -30,6 +30,8 @@ class Plant : public Node3D
     public:
         void _ready() override;
         void _process(double delta) override;
+
+        TypedArray<PlantNeed> get_need_instances() const;
         
         Ref<PlantData> get_plant_data() const;
         void set_plant_data(const Ref<PlantData>& p_plant_data);

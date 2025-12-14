@@ -53,6 +53,11 @@ void Plant::_process(double delta)
     mesh_instance->set_mesh(data->get_mesh_for_current_growth(curr_growth_percent));   
 }
 
+TypedArray<PlantNeed> Plant::get_need_instances() const
+{
+    return need_instances;    
+}
+
 Ref<PlantData> Plant::get_plant_data() const
 {
     return data;    
