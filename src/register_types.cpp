@@ -5,9 +5,12 @@
 #include <godot_cpp/core/defs.hpp>
 #include <godot_cpp/godot.hpp>
 
-#include "summator.h"
 #include "plant.h"
 #include "plant_data.h"
+#include "plant_need_data.h"
+#include "water_plant_need_data.cpp"
+#include "plant_need.h"
+#include "water_plant_need.cpp"
 
 using namespace godot;
 
@@ -16,9 +19,12 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	if (p_level != MODULE_INITIALIZATION_LEVEL_SCENE) {
 		return;
 	}
-	GDREGISTER_CLASS(Summator);
 	GDREGISTER_RUNTIME_CLASS(Plant);
 	GDREGISTER_CLASS(PlantData);
+	GDREGISTER_ABSTRACT_CLASS(PlantNeedData);
+	GDREGISTER_CLASS(WaterPlantNeedData);
+	GDREGISTER_ABSTRACT_CLASS(PlantNeed);
+	GDREGISTER_CLASS(WaterPlantNeed);
 }
 
 void uninitialize_gdextension_types(ModuleInitializationLevel p_level) {

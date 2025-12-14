@@ -15,6 +15,8 @@ ios.arm64.double.debug = "./ios/libtest-godot-cpp-game.ios.template_debug.arm64.
 ios.arm64.single.release = "./ios/libtest-godot-cpp-game.ios.template_release.arm64.dylib"
 ios.arm64.double.release = "./ios/libtest-godot-cpp-game.ios.template_release.arm64.double.dylib"
 
+windows.debug.x86_64 = "res://bin/libgdwfc.windows.template_debug.dev.x86_64.dll"
+
 windows.x86_32.single.debug = "./windows/test-godot-cpp-game.windows.template_debug.x86_32.dll"
 windows.x86_32.double.debug = "./windows/test-godot-cpp-game.windows.template_debug.x86_32.double.dll"
 windows.x86_32.single.release = "./windows/test-godot-cpp-game.windows.template_release.x86_32.dll"

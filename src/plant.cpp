@@ -31,10 +31,22 @@ void Plant::_ready()
     curr_growth = 0.0;
 
     mesh_instance->set_mesh(data->get_mesh_for_current_growth(curr_growth_percent));
+
+    auto needs = data->get_needs();
+    for (int i = 0; i < (int)needs.size(); ++i) {
+        Ref<PlantNeedData> pnd = needs[i];
+        auto pn = pnd->create_need();
+        need_instances.append(pn);
+    }
 }
 
 void Plant::_process(double delta)
 {
+    for (int i = 0; i < (int)need_instances.size(); ++i) {
+        Ref<PlantNeed> pn = need_instances[i];
+        pn->update(delta);
+    }
+    
     curr_growth += delta;
     curr_growth = std::fmin(curr_growth, data->get_growth_time());
     curr_growth_percent = curr_growth / data->get_growth_time();

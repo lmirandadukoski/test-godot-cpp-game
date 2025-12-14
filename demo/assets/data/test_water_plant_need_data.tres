@@ -1,0 +1,4 @@
+[gd_resource type="WaterPlantNeedData" format=3 uid="uid://des6ykxr8b4j8"]
+
+[resource]
+base_need_time = 7.0

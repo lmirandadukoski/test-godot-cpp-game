@@ -6,6 +6,7 @@
 #include <godot_cpp/classes/node3d.hpp>
 #include <godot_cpp/classes/mesh_instance3d.hpp>
 #include <godot_cpp/variant/variant.hpp>
+#include <godot_cpp/variant/typed_array.hpp>
 
 using namespace godot;
 
@@ -15,6 +16,7 @@ class Plant : public Node3D
 
     private:
         Ref<PlantData> data;
+        TypedArray<PlantNeed> need_instances;
 
         const NodePath mesh_node_path = NodePath("mesh");
         MeshInstance3D* mesh_instance;

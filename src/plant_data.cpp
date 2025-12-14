@@ -63,7 +63,21 @@ void PlantData::_bind_methods()
         ), 
         "set_large_mesh", 
         "get_large_mesh"
-    );    
+    ); 
+    
+    ClassDB::bind_method(D_METHOD("get_needs"), &PlantData::get_needs);
+    ClassDB::bind_method(D_METHOD("set_needs", "needs"), &PlantData::set_needs);
+        ClassDB::add_property(
+        "PlantData", 
+        PropertyInfo(
+            Variant::ARRAY, 
+            "needs", 
+            PROPERTY_HINT_TYPE_STRING, 
+            String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_RESOURCE_TYPE) + ":PlantNeedData"
+        ), 
+        "set_needs", 
+        "get_needs"
+    );     
 }
 
 Ref<Mesh> PlantData::get_small_mesh() const {
@@ -113,6 +127,14 @@ Ref<Mesh> PlantData::get_mesh_for_current_growth(double p_current_growth)
     if(p_current_growth <= 1.0)
         return medium_mesh;
     return large_mesh;
+}
+
+TypedArray<PlantNeedData> PlantData::get_needs() const {
+	return needs;
+}
+
+void PlantData::set_needs(const TypedArray<PlantNeedData>& p_needs) {
+    needs = p_needs;
 }
 
 void PlantData::print_data()
