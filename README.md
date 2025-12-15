@@ -1,56 +1,21 @@
-# godot-cpp template
-This repository serves as a quickstart template for GDExtension development with Godot 4.0+.
+# plant minigame using godot-cpp template (4.4)
+This is a brief demo of building a C++ game for Godot using GDExtension. It's starting point was the provided godot-cpp template at version 4.4 stable.
 
 ## Contents
-* Preconfigured source files for C++ development of the GDExtension ([src/](./src/))
-* An empty Godot project in [demo/](./demo), to test the GDExtension
-* godot-cpp as a submodule (`godot-cpp/`)
-* GitHub Issues template ([.github/ISSUE_TEMPLATE.yml](./.github/ISSUE_TEMPLATE.yml))
-* GitHub CI/CD workflows to publish your library packages when creating a release ([.github/workflows/builds.yml](./.github/workflows/builds.yml))
-* An SConstruct file with various functions, such as boilerplate for [Adding documentation](https://docs.godotengine.org/en/stable/tutorials/scripting/cpp/gdextension_docs_system.html)
+* Godot C++ Library
+* Source code for a mini game
 
-## Usage - Template
+## The mini game
 
-To use this template, log in to GitHub and click the green "Use this template" button at the top of the repository page. This will let you create a copy of this repository with a clean git history.
+The mini game was built with a strict time restriction of 10 hours, and with the aim to learn how to make C++ game for the Godot engine as quickly as possible. 
+The mini game is centered around a plant, which grows over the course of some data-defined time. As it grows, the plant becomes bigger.
+The plant needs to be watered every so often. When it is time to water it, a message will appear, and the player has a limited time to water the plant. If the plant is watered, it's growth trajectory continues. If the plant is not watered in time, it's growth trajectory slows down.
 
-To get started with your new GDExtension, do the following:
+## Code decisions
 
-* clone your repository to your local computer
-* initialize the godot-cpp git submodule via `git submodule update --init`
-* change the name of the compiled library file inside the [SConstruct](./SConstruct) file by modifying the `libname` string.
-  * change the paths of the to be loaded library name inside the [demo/bin/example.gdextension](./demo/bin/example.gdextension) file, by replacing `EXTENSION-NAME` with the name you chose for `libname`.
-* change the `entry_symbol` string inside [demo/bin/example.gdextension](./demo/bin/example.gdextension) file.
-  * rename the `example_library_init` function in [src/register_types.cpp](./src/register_types.cpp) to the same name you chose for `entry_symbol`.
-* change the name of the `demo/bin/example.gdextension` file
+Due to the strict-time restriction and the simplicity of the final design, the engineering of the game was kept really simple. The goal was to drive as much of the plant's behaviour and looks via Resources so that new gameplay could emerge. 
+A basic factory pattern creates PlantNeeds from PlantDataResources, allowing for a future where there might be a hierarchy of PlantNeed classes.
 
-Now, you can build the project with the following command:
+## Dev environment
 
-```shell
-scons
-```
-
-If the build command worked, you can test it with the [demo](./demo) project. Import it into Godot, open it, and launch the main scene. You should see it print the following line in the console:
-
-```
-Type: 24
-```
-
-### Configuring an IDE
-You can develop your own extension with any text editor and by invoking scons on the command line, but if you want to work with an IDE (Integrated Development Environment), you can use a compilation database file called `compile_commands.json`. Most IDEs should automatically identify this file, and self-configure appropriately.
-To generate the database file, you can run one of the following commands in the project root directory:
-```shell
-# Generate compile_commands.json while compiling
-scons compiledb=yes
-
-# Generate compile_commands.json without compiling
-scons compiledb=yes compile_commands.json
-```
-
-## Usage - Actions
-
-This repository comes with continuous integration (CI) through a GitHub action that tests building the GDExtension.
-It triggers automatically for each pushed change. You can find and edit it in [builds.yml](.github/workflows/ci.yml).
-
-There is also a workflow ([make_build.yml](.github/workflows/make_build.yml)) that builds the GDExtension for all supported platforms that you can use to create releases.
-You can trigger this workflow manually from the `Actions` tab on GitHub.
-After it is complete, you can find the file `godot-cpp-template.zip` in the `Artifacts` section of the workflow run.
+The configuration of GDExtension was done by following the instructions in the provided godot-cpp template. I used MSYS2 as the C++ compiler. I used VS Code as the IDE for this project since it had a couple of useful extensions I could install to debug C++ code while the application was running (CodeLLDB and C++ Helper).
