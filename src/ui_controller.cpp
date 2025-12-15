@@ -1,29 +1,39 @@
-#pragma once
-
 #include "ui_controller.h"
+#include "plant_need.h"
+
 #include <godot_cpp/core/class_db.hpp>
 #include <godot_cpp/variant/utility_functions.hpp>
+#include <godot_cpp/classes/viewport.hpp>
+#include <cmath>
 
 void UIController::_bind_methods() {
     ClassDB::bind_method(D_METHOD("on_plant_registered", "plant"), &UIController::on_plant_registered);
-    ClassDB::bind_method(
-        D_METHOD("set_button_container_path", "path"),
-        &UIController::set_button_container_path
-    );
-    ClassDB::bind_method(
-        D_METHOD("get_button_container_path"),
-        &UIController::get_button_container_path
-    );
+    ClassDB::bind_method(D_METHOD("on_need_timer_expired", "plant_need"), &UIController::on_need_timer_expired);
 
+    ClassDB::bind_method(D_METHOD("set_need_message_path", "path"), &UIController::set_need_message_path);
+    ClassDB::bind_method(D_METHOD("get_need_message_path"), &UIController::get_need_message_path);
     ADD_PROPERTY(
         PropertyInfo(
             Variant::NODE_PATH,
-            "button_container",
+            "need_message",
             PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE,
-            "Control"
+            "Label"
         ),
-        "set_button_container_path",
-        "get_button_container_path"
+        "set_need_message_path",
+        "get_need_message_path"
+    );
+
+    ClassDB::bind_method(D_METHOD("set_progress_bar_path", "path"), &UIController::set_progress_bar_path);
+    ClassDB::bind_method(D_METHOD("get_progress_bar_path"), &UIController::get_progress_bar_path);
+    ADD_PROPERTY(
+        PropertyInfo(
+            Variant::NODE_PATH,
+            "progress_bar",
+            PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE,
+            "ProgressBar"
+        ),
+        "set_progress_bar_path",
+        "get_progress_bar_path"
     );
 
     ClassDB::bind_method(D_METHOD("get_need_button_scene"), &UIController::get_need_button_scene);
@@ -34,17 +44,29 @@ void UIController::_bind_methods() {
         PropertyInfo(
             Variant::OBJECT, 
             "need_button_scene", 
-            PROPERTY_HINT_TYPE_STRING, 
+            PROPERTY_HINT_NODE_PATH_TO_EDITED_NODE, 
             String::num(Variant::OBJECT) + "/" + String::num(PROPERTY_HINT_RESOURCE_TYPE) + ":PackedScene"
         ), 
         "set_need_button_scene", 
         "get_need_button_scene"
     ); 
+
+    ClassDB::bind_method(D_METHOD("on_satisfy_need_button_pressed"),&UIController::on_satisfy_need_button_pressed);
 }
 
 void UIController::_ready() {
-    if (!button_container_path.is_empty()) {
-        button_container = get_node_or_null(button_container_path);
+    if (!need_message_path.is_empty()) {
+        auto need_message_node = get_node_or_null(need_message_path);
+        if (need_message_node != nullptr) 
+            need_message = Object::cast_to<Label>(need_message_node);
+    }
+
+    if (!progress_bar_path.is_empty()) {
+        auto progress_bar_node = get_node_or_null(progress_bar_path);
+        if (progress_bar_node != nullptr) {
+            progress_bar = Object::cast_to<ProgressBar>(progress_bar_node);
+            progress_bar->set_value(0.0);
+        }            
     }
 
     auto gm = GameManager::get_instance();
@@ -57,16 +79,42 @@ void UIController::_ready() {
         gm->connect("plant_registered", Callable(this, "on_plant_registered"));
         return;
     }
+
+    rng.instantiate();
+    rng->randomize();
 }
 
-void UIController::set_button_container_path(const NodePath &p_path)
-{
-    button_container_path = p_path;    
+void UIController::_process(double delta) {
+    if(active_need.is_null())
+        return;
+    interaction_window_timer += delta;
+    auto progress = interaction_window_timer / active_need->get_data()->get_need_interaction_window_time();
+    progress_bar->set_value(std::fmin(progress * 100.0, 100.0));
+    if(interaction_window_timer < active_need->get_data()->get_need_interaction_window_time())
+        return;
+    // Interaction window expired
+    active_need->do_need_missed();
+    clean_up();
 }
 
-NodePath UIController::get_button_container_path() const
+void UIController::set_need_message_path(const NodePath &p_path)
 {
-    return button_container_path;    
+    need_message_path = p_path;    
+}
+
+NodePath UIController::get_need_message_path() const
+{
+    return need_message_path;    
+}
+
+void UIController::set_progress_bar_path(const NodePath &p_path)
+{
+    progress_bar_path = p_path;    
+}
+
+NodePath UIController::get_progress_bar_path() const
+{
+    return progress_bar_path;    
 }
 
 void UIController::set_need_button_scene(const Ref<PackedScene>& p_scene)
@@ -79,15 +127,53 @@ Ref<PackedScene> UIController::get_need_button_scene() const
     return need_button_scene;    
 }
 
-void UIController::on_plant_registered(const Plant* plant) {
+void UIController::on_plant_registered(Plant* plant) {
     auto gm = GameManager::get_instance();
     gm->disconnect("plant_registered", Callable(this, "on_plant_registered"));
+    plant->connect("need_timer_expired", Callable(this, "on_need_timer_expired"));
+}
 
-    auto pni = plant->get_need_instances();
-    for (int i = 0; i < (int)pni.size(); ++i) {
-        Ref<PlantNeed> pnd = pni[i];
-        Node* button_instance = need_button_scene->instantiate();
-        button_container->add_child(button_instance);
-        need_buttons.append(button_instance);
-    }    
+void UIController::on_need_timer_expired(Ref<PlantNeed> plant_need)
+{
+    if(plant_need.is_null())
+        return;
+    active_need = plant_need;
+
+    need_message->set_text(active_need->get_data()->get_need_message());  
+    progress_bar->set_value(100.0);
+    interaction_window_timer = 0.0;
+
+    auto b = need_button_scene->instantiate();
+    satisfy_need_button = Object::cast_to<Button>(b);
+    satisfy_need_button->set_position(get_random_screen_position(satisfy_need_button->get_size()));
+    add_child(satisfy_need_button);
+
+    satisfy_need_button->connect("pressed", Callable(this, "on_satisfy_need_button_pressed"));
+}
+
+void UIController::on_satisfy_need_button_pressed()
+{
+    active_need->do_need_satisfied();
+    clean_up();    
+}
+
+void UIController::clean_up()
+{
+    need_message->set_text("");  
+    progress_bar->set_value(0.0);
+    active_need.unref();
+
+    if(satisfy_need_button == nullptr) 
+        return;
+
+    remove_child(satisfy_need_button);
+    satisfy_need_button->queue_free();
+    satisfy_need_button = nullptr;       
+}
+Vector2 UIController::get_random_screen_position(Vector2 margin)
+{
+    Vector2 screen_size = get_viewport()->get_visible_rect().size;
+    float x = rng->randf_range(margin.x, screen_size.x - margin.x);
+    float y = rng->randf_range(margin.y, screen_size.y - margin.y);
+    return Vector2(x, y);
 }

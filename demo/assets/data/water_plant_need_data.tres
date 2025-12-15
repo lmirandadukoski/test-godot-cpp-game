@@ -1,0 +1,6 @@
+[gd_resource type="PlantNeedData" format=3 uid="uid://dpbgoeppo4wmt"]
+
+[resource]
+base_need_time = 5.0
+need_message = "Water me!"
+need_interaction_window_time = 2.0

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "plant_data.h"
+#include "plant_need.h"
 
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/classes/node3d.hpp>
@@ -23,6 +24,7 @@ class Plant : public Node3D
 
         double curr_growth, curr_growth_percent;
         double curr_health;
+        double growth_multiplier = 1.0;
 
     protected:
 	    static void _bind_methods();
@@ -35,4 +37,13 @@ class Plant : public Node3D
         
         Ref<PlantData> get_plant_data() const;
         void set_plant_data(const Ref<PlantData>& p_plant_data);
+
+        void do_need_timer_expired(Ref<PlantNeed> need) {
+            emit_signal("need_timer_expired", need);        
+        }
+
+        void modify_growth_multiplier(double p_modifier) {
+            growth_multiplier += p_modifier;
+            growth_multiplier = std::fmax(growth_multiplier, 0.1);
+        }
 };

@@ -1,5 +1,8 @@
-[gd_scene format=3 uid="uid://cd6se032onlxc"]
+[gd_scene load_steps=2 format=3 uid="uid://cd6se032onlxc"]
+
+[ext_resource type="PlantData" uid="uid://d1xmxts47xp3u" path="res://assets/data/plant_data.tres" id="1_t03al"]
 
 [node name="plant" type="Plant"]
+data = ExtResource("1_t03al")
 
 [node name="mesh" type="MeshInstance3D" parent="."]

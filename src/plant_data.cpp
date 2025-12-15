@@ -1,5 +1,3 @@
-#pragma once
-
 #include "plant_data.h"
 
 #include <godot_cpp/core/class_db.hpp>

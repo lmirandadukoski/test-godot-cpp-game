@@ -9,9 +9,7 @@
 #include "plant.h"
 #include "plant_data.h"
 #include "plant_need_data.h"
-#include "water_plant_need_data.cpp"
 #include "plant_need.h"
-#include "water_plant_need.cpp"
 #include "ui_controller.h"
 
 using namespace godot;
@@ -24,10 +22,8 @@ void initialize_gdextension_types(ModuleInitializationLevel p_level)
 	GDREGISTER_CLASS(GameManager);
 	GDREGISTER_RUNTIME_CLASS(Plant);
 	GDREGISTER_CLASS(PlantData);
-	GDREGISTER_ABSTRACT_CLASS(PlantNeedData);
-	GDREGISTER_CLASS(WaterPlantNeedData);
-	GDREGISTER_ABSTRACT_CLASS(PlantNeed);
-	GDREGISTER_CLASS(WaterPlantNeed);
+	GDREGISTER_CLASS(PlantNeedData);
+	GDREGISTER_CLASS(PlantNeed);
 	GDREGISTER_RUNTIME_CLASS(UIController);
 }
 

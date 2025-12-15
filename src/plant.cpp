@@ -6,6 +6,10 @@
 
 void Plant::_bind_methods()
 {
+    ADD_SIGNAL(MethodInfo("need_timer_expired",
+        PropertyInfo(Variant::OBJECT, "plant_need", PROPERTY_HINT_TYPE_STRING, "PlantNeed")
+    ));	
+
 // binding plant data
     ClassDB::bind_method(D_METHOD("get_plant_data"), &Plant::get_plant_data);
     ClassDB::bind_method(D_METHOD("set_plant_data", "data"), &Plant::set_plant_data);
@@ -36,6 +40,7 @@ void Plant::_ready()
     for (int i = 0; i < (int)needs.size(); ++i) {
         Ref<PlantNeedData> pnd = needs[i];
         auto pn = pnd->create_need();
+        pn->initialise(this, pnd);
         need_instances.append(pn);
     }
 }
@@ -47,7 +52,7 @@ void Plant::_process(double delta)
         pn->update(delta);
     }
     
-    curr_growth += delta;
+    curr_growth += delta * growth_multiplier;
     curr_growth = std::fmin(curr_growth, data->get_growth_time());
     curr_growth_percent = curr_growth / data->get_growth_time();
     mesh_instance->set_mesh(data->get_mesh_for_current_growth(curr_growth_percent));   

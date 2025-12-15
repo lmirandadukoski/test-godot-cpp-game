@@ -1,6 +1,6 @@
-#pragma once
-
 #include "game_manager.h"
+#include "plant.h"
+#include "ui_controller.h"
 #include <godot_cpp/core/class_db.hpp>
 
 GameManager* GameManager::instance = nullptr;
@@ -48,11 +48,11 @@ void GameManager::_bind_methods() {
 
     ADD_SIGNAL(MethodInfo(
         "plant_registered",
-        PropertyInfo(Variant::OBJECT, "plant", PROPERTY_HINT_RESOURCE_TYPE, "Plant")
+        PropertyInfo(Variant::OBJECT, "plant", PROPERTY_HINT_NODE_TYPE, "Plant")
     ));
     ADD_SIGNAL(MethodInfo(
         "ui_registered",
-        PropertyInfo(Variant::OBJECT, "ui", PROPERTY_HINT_RESOURCE_TYPE, "UIController")
+        PropertyInfo(Variant::OBJECT, "ui", PROPERTY_HINT_NODE_TYPE, "UIController")
     ));
 }
 

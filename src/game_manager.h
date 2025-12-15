@@ -1,7 +1,5 @@
 #pragma once
 
-#include "plant.h"
-#include "ui_controller.h"
 #include <godot_cpp/classes/node.hpp>
 #include <godot_cpp/variant/node_path.hpp>
 
@@ -21,11 +19,11 @@ class GameManager : public Node {
         NodePath ui_path;
         UIController* ui = nullptr;
 
-        void do_plant_registered(const Plant* plant) {
+        void do_plant_registered(Plant* plant) {
             emit_signal("plant_registered", plant);
         }
 
-        void do_ui_registered(const UIController* ui) {
+        void do_ui_registered(UIController* ui) {
             emit_signal("ui_registered", ui);
         }
 

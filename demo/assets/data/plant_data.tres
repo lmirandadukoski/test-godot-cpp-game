@@ -2,8 +2,8 @@
 
 [ext_resource type="ArrayMesh" uid="uid://b3dcwj1mm04y7" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_large.obj" id="1_gare0"]
 [ext_resource type="ArrayMesh" uid="uid://dsvpbbdeueeah" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_medium.obj" id="2_f2yic"]
-[ext_resource type="WaterPlantNeedData" uid="uid://des6ykxr8b4j8" path="res://assets/data/test_water_plant_need_data.tres" id="3_f2yic"]
 [ext_resource type="ArrayMesh" uid="uid://cax7ma7e01jxl" path="res://assets/Tiny Treats - House Plants set/obj/pothos_plant_small.obj" id="3_mn6nm"]
+[ext_resource type="PlantNeedData" uid="uid://dpbgoeppo4wmt" path="res://assets/data/water_plant_need_data.tres" id="3_v4cog"]
 
 [resource]
 health = 10.0
@@ -11,4 +11,4 @@ growth_time = 60.0
 small_mesh = ExtResource("3_mn6nm")
 medium_mesh = ExtResource("2_f2yic")
 large_mesh = ExtResource("1_gare0")
-needs = Array[PlantNeedData]([ExtResource("3_f2yic")])
+needs = Array[PlantNeedData]([ExtResource("3_v4cog")])

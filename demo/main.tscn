@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ca0toejpg6o12"]
+[gd_scene load_steps=5 format=3 uid="uid://ca0toejpg6o12"]
 
 [ext_resource type="Material" uid="uid://frk1ayqnyfol" path="res://assets/materials/ground.tres" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cd6se032onlxc" path="res://plant.tscn" id="3_h2yge"]
 [ext_resource type="PackedScene" uid="uid://bbwti1jc2sx7u" path="res://ui.tscn" id="4_1bvp3"]
-[ext_resource type="PlantData" uid="uid://d1xmxts47xp3u" path="res://assets/data/test_plant_data.tres" id="4_lquwl"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_1bvp3"]
 
@@ -37,4 +36,3 @@ near = 0.007
 [node name="ui" parent="." instance=ExtResource("4_1bvp3")]
 
 [node name="plant" parent="." instance=ExtResource("3_h2yge")]
-data = ExtResource("4_lquwl")

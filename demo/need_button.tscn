@@ -2,9 +2,9 @@
 
 [ext_resource type="StyleBox" uid="uid://bqmutfupti4g0" path="res://assets/styles/button_idle.tres" id="1_qmqi0"]
 
-[node name="Button1" type="Button"]
-custom_minimum_size = Vector2(64, 64)
+[node name="button" type="Button"]
+custom_minimum_size = Vector2(124, 124)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_styles/normal = ExtResource("1_qmqi0")
-text = "one"
+text = "water"
