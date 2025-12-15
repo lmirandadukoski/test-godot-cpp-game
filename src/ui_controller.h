@@ -28,8 +28,6 @@ class UIController : public Control {
 
         Ref<PackedScene> need_button_scene;
         Button* satisfy_need_button;
-        Ref<RandomNumberGenerator> rng;
-        Vector2 get_random_screen_position(Vector2 margin);
 
         Ref<PlantNeed> active_need = nullptr;
         double interaction_window_timer;

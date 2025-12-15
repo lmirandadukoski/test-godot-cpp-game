@@ -79,9 +79,6 @@ void UIController::_ready() {
         gm->connect("plant_registered", Callable(this, "on_plant_registered"));
         return;
     }
-
-    rng.instantiate();
-    rng->randomize();
 }
 
 void UIController::_process(double delta) {
@@ -145,7 +142,6 @@ void UIController::on_need_timer_expired(Ref<PlantNeed> plant_need)
 
     auto b = need_button_scene->instantiate();
     satisfy_need_button = Object::cast_to<Button>(b);
-    satisfy_need_button->set_position(get_random_screen_position(satisfy_need_button->get_size()));
     add_child(satisfy_need_button);
 
     satisfy_need_button->connect("pressed", Callable(this, "on_satisfy_need_button_pressed"));
@@ -169,11 +165,4 @@ void UIController::clean_up()
     remove_child(satisfy_need_button);
     satisfy_need_button->queue_free();
     satisfy_need_button = nullptr;       
-}
-Vector2 UIController::get_random_screen_position(Vector2 margin)
-{
-    Vector2 screen_size = get_viewport()->get_visible_rect().size;
-    float x = rng->randf_range(margin.x, screen_size.x - margin.x);
-    float y = rng->randf_range(margin.y, screen_size.y - margin.y);
-    return Vector2(x, y);
 }
